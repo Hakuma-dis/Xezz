@@ -21,4 +21,4 @@ COPY . .
 
 RUN pm2 save
 
-CMD ["node", "."]`
+CMD ["npm", "start"]`
