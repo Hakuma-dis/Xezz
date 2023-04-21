@@ -2,18 +2,23 @@ FROM node:16.10.0-buster
 
 RUN apt-get update && \
   apt-get install -y \
+  neofetch \
+  chromium \
   ffmpeg \
+  wget \
   imagemagick \
-  webp && \
-  apt-get upgrade -y && \
-  rm -rf /var/lib/apt/lists/*
-
+  graphicsmagick \
+  webp -y && \
+  rm -rf /bin/sh/*
+  
 COPY package.json .
 
-RUN npm install
+RUN npm install -g npm@8.1.3
+
+RUN npm install -g pm2
 
 COPY . .
 
-EXPOSE 5000
+RUN pm2 save
 
-CMD ["npm", "start"]
+CMD ["node", "."]`
